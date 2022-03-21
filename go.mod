@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/ucwong/golang-kv v1.0.3
-	github.com/ucwong/sign v0.0.0-20210420141717-2073c571dc0e
+	github.com/ucwong/sign v0.0.0-20220321093213-c5153afc9305
 )
 
 require (

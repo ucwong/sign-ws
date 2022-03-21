@@ -861,6 +861,8 @@ github.com/ucwong/goleveldb v1.0.3-0.20200618184106-f1c6bc3a428b/go.mod h1:7Sq6w
 github.com/ucwong/goleveldb v1.0.3-0.20200807021306-7d6f914f4fab/go.mod h1:7Sq6w7AfEZuB/a6mrlvHCSXCSkqojCMMrM3Ei12QAT0=
 github.com/ucwong/sign v0.0.0-20210420141717-2073c571dc0e h1:WE2kAM12GqNzMZSXLdoJR7yBLkA8o+xXws3JzORK+88=
 github.com/ucwong/sign v0.0.0-20210420141717-2073c571dc0e/go.mod h1:PEylvrDDYkuCjEqFx3Lj0NV9A3Yvt+G7tSoMEKIKiiw=
+github.com/ucwong/sign v0.0.0-20220321093213-c5153afc9305 h1:E5IIcnXqi0qDV0dwq7bjfWRtWdqS1SnNR4SXuzMnK3g=
+github.com/ucwong/sign v0.0.0-20220321093213-c5153afc9305/go.mod h1:PEylvrDDYkuCjEqFx3Lj0NV9A3Yvt+G7tSoMEKIKiiw=
 github.com/ucwong/tsdb v0.10.4-0.20200505032819-8f9eeea5c692/go.mod h1:dw8qQ+CN0e7UFHI94vvExZ2UJg10jeFhP16PeXPtvsU=
 github.com/ucwong/tsdb v0.10.4-0.20200518132041-df9cb51f3a80/go.mod h1:7uwwGAwwZp039dLF4SLwyB691OcSipsMo5D0ZDlRU5M=
 github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGrc=

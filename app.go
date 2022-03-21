@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
+	//"strconv"
 	"strings"
 	"time"
 
@@ -43,12 +43,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		res = Get(uri)
 	case "POST":
-		ts, err := strconv.ParseInt(q.Get("ts"), 10, 64)
+		/*ts, err := strconv.ParseInt(q.Get("ts"), 10, 64)
 		if err != nil {
 			res = "Invalid timestamp"
 			break
-		}
-		if !util.Verify(q.Get("msg"), addr, q.Get("sig"), ts) {
+		}*/
+		if !util.Verify(q.Get("msg"), addr, q.Get("sig")) {
 			res = "Invalid signature"
 			break
 		}
