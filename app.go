@@ -1,23 +1,18 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/ucwong/golang-kv"
 	"github.com/ucwong/sign/util"
 )
 
 var db kv.Bucket
-
-type Body struct {
-	Timestamp int64  `json:"ts"`
-	Addr      string `json:"addr"`
-}
 
 func main() {
 	db = kv.Badger(".badger")
@@ -28,7 +23,7 @@ func main() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-	log.Printf("%v %v", r.Method, r.URL)
+	log.Printf("%v %v %v", r.Method, r.URL, time.Now().Unix())
 	res := "OK"
 
 	uri := strings.ToLower(r.URL.Path)
@@ -38,7 +33,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	addr := u[len(u)-1] //, u[len(u)-2]
+	addr, _ := u[len(u)-1], u[len(u)-2]
 	//if !common.IsHexAddress(addr) {
 	//	fmt.Fprintf(w, "Invalid infohash format")
 	//	return
@@ -48,32 +43,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		res = Get(uri)
 	case "POST":
-		if reqBody, err := ioutil.ReadAll(r.Body); err == nil {
-			//if err := Set(uri, string(reqBody)); err != nil {
-			//	res = "ERROR" //fmt.Sprintf("%v", err)
-			//
-			var body Body
-			//var to string
-			if len(reqBody) > 0 {
-				if err := json.Unmarshal(reqBody, &body); err != nil {
-					log.Printf("%v", err)
-					res = "Invalid json"
-					break
-				}
-			}
-
-			//to = strings.ToLower(body.Addr)
-			//if len(to) > 0 && !common.IsHexAddress(to) {
-			//	res = "Invalid addr format"
-			//	break
-			//}
-			log.Println(string(reqBody))
-			if !util.Verify(string(reqBody), addr, q.Get("sig"), body.Timestamp) {
-				//if !Verify(string(reqBody), addr, q.Get("sig"), 1) {
-				res = "Invalid signature"
-				break
-			}
+		ts, err := strconv.ParseInt(q.Get("ts"), 10, 64)
+		if err != nil {
+			res = "Invalid timestamp"
+			break
 		}
+		if !util.Verify(q.Get("msg"), addr, q.Get("sig"), ts) {
+			res = "Invalid signature"
+			break
+		}
+		log.Printf("suc\n")
 	default:
 		res = "method not found"
 	}
