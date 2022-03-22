@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/ucwong/sign/util"
 )
@@ -19,7 +18,7 @@ func main() {
 }
 
 func sign(w http.ResponseWriter, r *http.Request) {
-	log.Printf("%v %v %v", r.Method, r.URL, time.Now().Unix())
+	log.Printf("%v %v\n", r.Method, r.URL)
 	res := "OK"
 
 	q := r.URL.Query()
